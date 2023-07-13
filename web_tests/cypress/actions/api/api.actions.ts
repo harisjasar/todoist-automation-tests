@@ -1,4 +1,5 @@
 import { TodoistApi } from "@doist/todoist-api-typescript";
+import { Project } from "../../interfaces/project.interface";
 
 class ApiActions {
     private api: TodoistApi;
@@ -20,6 +21,15 @@ class ApiActions {
         try {
             await this.api.deleteProject(projectId)
         } catch (error) {
+            cy.log(error)
+            throw error;
+        }
+    }
+
+    public async updateProject(projectId: string, project: Project){
+        try{
+            this.api.updateProject(projectId, project)
+        }catch(error){
             cy.log(error)
             throw error;
         }
