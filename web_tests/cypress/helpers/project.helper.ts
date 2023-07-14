@@ -10,6 +10,18 @@ class ProjectHelper {
             .find('span')
             .should('have.text', expectedName);
     }
+
+    /**
+     * Selects the project in the UI using Cypress.
+     * 
+     * @param projectId - The ID of the project to select.
+     */
+    selectProject(projectId: string) {
+        cy.get(`li[data-id="${projectId}"]`)
+            .should('exist')
+            .click();
+    }
+
 }
 
 export default new ProjectHelper();

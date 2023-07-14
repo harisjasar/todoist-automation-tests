@@ -1,5 +1,6 @@
 import apiActions from "../../actions/api/api.actions";
 import loginActions from "../../actions/ui/login.actions";
+import logoutActions from "../../actions/ui/logout.actions";
 import projectHelper from "../../helpers/project.helper";
 import { Project } from "../../interfaces/project.interface";
 
@@ -22,7 +23,9 @@ describe("Todoist Project - Web UI tests", () => {
     })
 
     afterEach(() => {
-        apiActions.deleteProject(projectId)
+        cy.wrap(logoutActions.logout()).then(() => {
+            apiActions.deleteProject(projectId);
+        });
     })
 
     it("Verify on web application project is created", () => {
@@ -31,7 +34,8 @@ describe("Todoist Project - Web UI tests", () => {
 
     it("Verify project name is updated", () => {
         const project: Project = { name: updatedProjectName }
-        apiActions.updateProject(projectId, project)
-        projectHelper.verifyProjectName(projectId, updatedProjectName)
+        cy.wrap(apiActions.updateProject(projectId, project)).then(() => {
+            projectHelper.verifyProjectName(projectId, updatedProjectName)
+        })
     })
 });

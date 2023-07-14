@@ -1,4 +1,7 @@
 /// <reference types="cypress" />
+
+import apiActions from "../actions/api/api.actions";
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -35,3 +38,6 @@
 //     }
 //   }
 // }
+beforeEach(() => {
+    apiActions.deleteAllProjects()
+});

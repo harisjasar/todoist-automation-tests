@@ -1,7 +1,7 @@
 export interface Due {
     string: string;
     date: string;
-    is_recurring: boolean;
+    isRecurring?: boolean;
     datetime?: string;
     timezone?: string;
 }
