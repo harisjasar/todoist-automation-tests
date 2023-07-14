@@ -1,0 +1,10 @@
+{
+    "content": "This is a sample task name",
+    "description": "This is a sample task description",
+    "due": {
+        "date": "2023-09-18",
+        "isRecurring": false,
+        "datetime": "2023-09-18T12:00:00.000000Z"
+    },
+    "priority": "Priority 3"
+}

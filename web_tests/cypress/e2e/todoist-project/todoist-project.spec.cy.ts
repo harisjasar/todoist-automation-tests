@@ -1,8 +1,9 @@
 import apiActions from "../../actions/api/api.actions";
 import loginActions from "../../actions/ui/login.actions";
+import projectHelper from "../../helpers/project.helper";
 import { Project } from "../../interfaces/project.interface";
 
-describe("Validate Create Project functionality", () => {
+describe("Todoist Project - Web UI tests", () => {
     let projectName: string;
     let projectId: string;
     let updatedProjectName: string;
@@ -25,18 +26,12 @@ describe("Validate Create Project functionality", () => {
     })
 
     it("Verify on web application project is created", () => {
-        verifyProjectName(projectId, projectName)
+        projectHelper.verifyProjectName(projectId, projectName)
     })
 
     it("Verify project name is updated", () => {
         const project: Project = { name: updatedProjectName }
         apiActions.updateProject(projectId, project)
-        verifyProjectName(projectId, updatedProjectName)
+        projectHelper.verifyProjectName(projectId, updatedProjectName)
     })
 });
-
-function verifyProjectName(projectId: string, expectedName: string) {
-    cy.get(`li[data-id="${projectId}"]`)
-        .find('span')
-        .should('have.text', expectedName);
-}

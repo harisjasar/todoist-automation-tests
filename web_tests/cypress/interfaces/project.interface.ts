@@ -1,6 +1,6 @@
 export interface Project {
     id?: string;
-    name?: string;
+    name: string;
     color?: string;
     parent_id?: string | null;
     order?: number;

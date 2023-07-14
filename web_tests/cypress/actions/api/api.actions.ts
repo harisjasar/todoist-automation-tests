@@ -1,5 +1,6 @@
 import { TodoistApi } from "@doist/todoist-api-typescript";
 import { Project } from "../../interfaces/project.interface";
+import TaskFilterParameters from "../../interfaces/task-filter-parameters.interface";
 
 class ApiActions {
     private api: TodoistApi;
@@ -29,6 +30,16 @@ class ApiActions {
     public async updateProject(projectId: string, project: Project){
         try{
             this.api.updateProject(projectId, project)
+        }catch(error){
+            cy.log(error)
+            throw error;
+        }
+    }
+
+    public async getTasks(filterParameter: TaskFilterParameters){
+        try{
+            const tasks = await this.api.getTasks(filterParameter)
+            return tasks;
         }catch(error){
             cy.log(error)
             throw error;
