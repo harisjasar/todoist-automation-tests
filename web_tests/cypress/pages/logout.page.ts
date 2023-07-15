@@ -6,8 +6,12 @@ class LogoutPage extends BasePage {
   }
 
   get logoutButton() {
-    return cy.get('[id=":rh:"]');
+    //return cy.get('button[role="menuitem"]').contains('Log out');
+    return cy.get('span').filter((index, el) => {
+      return el.textContent.trim() === 'Log out';
+    });
   }
+
 }
 
 export default new LogoutPage();
