@@ -8,6 +8,8 @@ class ProjectHelper {
     verifyProjectName(projectId: string, expectedName: string) {
         cy.get(`li[data-id="${projectId}"]`)
             .find('span')
+            .should('exist')
+            .should('be.visible')
             .should('have.text', expectedName);
     }
 
@@ -19,6 +21,7 @@ class ProjectHelper {
     selectProject(projectId: string) {
         cy.get(`li[data-id="${projectId}"]`)
             .should('exist')
+            .should('be.visible')
             .click();
     }
 

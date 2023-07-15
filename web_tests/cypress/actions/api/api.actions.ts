@@ -62,9 +62,7 @@ class ApiActions {
     public async deleteAllProjects() {
         try {
             const projects = await this.api.getProjects();
-            projects.forEach(async (project) => {
-                await this.deleteProject(project.id);
-            });
+            await Promise.all(projects.map(project => this.deleteProject(project.id)));
         } catch (error) {
             cy.log(error)
             throw error;

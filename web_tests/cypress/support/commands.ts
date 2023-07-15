@@ -39,5 +39,5 @@ import apiActions from "../actions/api/api.actions";
 //   }
 // }
 beforeEach(() => {
-    apiActions.deleteAllProjects()
+    cy.wrap(apiActions.deleteAllProjects());
 });
