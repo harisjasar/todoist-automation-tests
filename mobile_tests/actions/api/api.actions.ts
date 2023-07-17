@@ -67,6 +67,15 @@ class ApiActions {
             throw error;
         }
     }
+
+    public async reopenTask(taskId: string) {
+        try {
+            await this.api.reopenTask(taskId);
+        } catch (error) {
+            console.log(error)
+            throw error;
+        }
+    }
 }
 
 export default new ApiActions();
